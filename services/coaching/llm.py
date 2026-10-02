@@ -18,12 +18,15 @@ class LLMCoach:
             *self.history[-10:],
             {"role": "user", "content": prompt}
         ]
+        
+        
 
         response = self.client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=messages,
             temperature=0.4,
         )
+       
 
         text = response.choices[0].message.content.strip()
         self.history.append({"role": "assistant", "content": text})
